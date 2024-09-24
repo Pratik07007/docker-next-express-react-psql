@@ -12,7 +12,6 @@ app.get("/", async (req: Request, res: Response) => {
       name: "Pratik Dhimal",
     },
   });
-  console.log(process.env.ENV3);
   res.json({ msg: "Healthy Endpoint" });
 });
 

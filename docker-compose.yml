@@ -7,7 +7,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_DATABASE=development
     volumes:
       - psql-data:/var/lib/postgresql/data
 
