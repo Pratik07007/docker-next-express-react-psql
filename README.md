@@ -1,6 +1,6 @@
 ### This Repo consists the compose file for starting PostgreSql, Next js, Express js, and React Js in a docker container
 
-### Seetting Up
+### Setting Up
 
 - git clone https://github.com/Pratik07007/docker-next-express-react-psql.git
 - docker-compose up
