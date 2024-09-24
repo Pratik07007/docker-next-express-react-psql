@@ -1,0 +1,43 @@
+services:
+  db:
+    container_name: psql-db
+    image: postgres:12.20-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=development
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+
+  next-app:
+    container_name: next-app
+    depends_on:
+      - db
+    build: ./next-app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@psql-db:5432/development
+
+  react-frontend:
+    container_name: react-frontend
+    build: ./react-frontend
+    depends_on:
+      - db
+    ports:
+      - "5173:5173"
+
+  express-backend:
+    container_name: express-backend
+    build: ./express-backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@psql-db:5432/development
+
+volumes:
+  psql-data:
